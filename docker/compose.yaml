@@ -6,8 +6,6 @@ services:
     depends_on:
       - db
     volumes:
-      # - ./www.conf:/usr/local/etc/php-fpm.d/www.conf
-      # - ./www.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
       - ../:/app
     networks:
       - example-app-network
