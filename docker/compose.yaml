@@ -1,0 +1,58 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      # - ./www.conf:/usr/local/etc/php-fpm.d/www.conf
+      # - ./www.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+      - ../:/app
+    networks:
+      - example-app-network
+
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ../:/app
+    depends_on:
+      - app
+    networks:
+      - example-app-network
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache:/data
+    networks:
+      - example-app-network
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: example-app-db
+      POSTGRES_USER: example-app-admin
+      POSTGRES_PASSWORD: bF84F|`2\Zo%
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - example-app-network
+
+networks:
+  example-app-network:
+    driver: bridge
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:
+  cache:
