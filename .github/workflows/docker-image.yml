@@ -27,7 +27,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-            context: .
-            file: docker/Dockerfile
+            context: ${GITHUB_WORKSPACE}
+            file: ${GITHUB_WORKSPACE}/docker/Dockerfile
             push: true
             tags: ghcr.io/oudrius/example-app:latest
