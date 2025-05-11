@@ -11,6 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - 
+        name: Debug Environment
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Repository contents:"
+          ls -la
+          echo "Docker directory contents (if exists):"
+          ls -la docker || echo "Docker directory not found"
+          echo "Finding all Dockerfiles:"
+          find . -name "Dockerfile" -type f
+      - 
         name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
