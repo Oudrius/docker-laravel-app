@@ -1,7 +1,7 @@
-localhost:80 {
+:8080 {
   root * /app/public
   file_server
   
   try_files {path} {path}/ /index.php?{query}
-  php_fastcgi app:9000
+  php_fastcgi laravel:9000
 }

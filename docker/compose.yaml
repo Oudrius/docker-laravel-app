@@ -39,7 +39,7 @@ services:
     environment:
       POSTGRES_DB: example-app-db
       POSTGRES_USER: example-app-admin
-      POSTGRES_PASSWORD: bF84F|`2\Zo%
+      POSTGRES_PASSWORD: test
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:

@@ -22,3 +22,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+docker/terraform/.terraform
+docker/terraform/.terraform.lock.hcl
+docker/terraform/terraform.tfstate
+docker/terraform/terraform.tfstate.backup
